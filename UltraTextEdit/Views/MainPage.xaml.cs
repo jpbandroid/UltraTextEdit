@@ -27,5 +27,30 @@ namespace UltraTextEdit.Views
         {
             this.InitializeComponent();
         }
+
+        private void OpenEditTab(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenHelpTab(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BoldButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ItalicButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
