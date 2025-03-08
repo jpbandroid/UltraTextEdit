@@ -19,7 +19,28 @@ namespace UltraTextEdit.Views
             Help.Visibility = Visibility.Collapsed;
         }
 
-        #region Stub methods
+        private void BoldButton_Click(object sender, RoutedEventArgs e)
+        {
+            ITextSelection selectedText = editor.Document.Selection;
+            if (selectedText != null)
+            {
+                ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                charFormatting.Bold = FormatEffect.Toggle;
+                selectedText.CharacterFormat = charFormatting;
+            }
+        }
+
+        private void ItalicButton_Click(object sender, RoutedEventArgs e)
+        {
+            ITextSelection selectedText = editor.Document.Selection;
+            if (selectedText != null)
+            {
+                ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                charFormatting.Italic = FormatEffect.Toggle;
+                selectedText.CharacterFormat = charFormatting;
+            }
+        }
+
         private void OpenEditTab(object sender, RoutedEventArgs e)
         {
             EditButton.IsChecked = true;
@@ -55,7 +76,6 @@ namespace UltraTextEdit.Views
                 editor.ContextFlyout.Hide();
             }
         }
-        #endregion
 
         private void OnKeyboardAcceleratorInvoked(Microsoft.UI.Xaml.Input.KeyboardAccelerator sender, Microsoft.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs args)
         {
