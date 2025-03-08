@@ -438,11 +438,11 @@
         <RelativePanel x:Name="Ribbon" Padding="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
             <Grid x:Name="TopMid" CornerRadius="8"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                 <RelativePanel>
-                    <StackPanel x:Name="RibbonTabs" Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                    <StackPanel x:Name="RibbonTabs" Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Padding="0,0,2,2">
                         <ToggleButton x:Name="EditButton" x:Uid="Home"  Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="OpenEditTab" Style="{StaticResource ToolbarToggleButton}" Padding="11,6,11,4"/>
                         <ToggleButton x:Name="HelpButton" x:Uid="Help" Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="OpenHelpTab" Style="{StaticResource ToolbarToggleButton}" Padding="11,6,11,4"/>
                     </StackPanel>
-                    <Border x:Name="RibbonBorder" RelativePanel.Below="RibbonTabs" VerticalAlignment="Top" BorderBrush="{StaticResource CardStrokeColorDefaultBrush}" BorderThickness="0,1,0,1" HorizontalAlignment="Stretch" Background="{StaticResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <Border x:Name="RibbonBorder" RelativePanel.Below="RibbonTabs" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{StaticResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Grid>
                             <controls:Ribbon x:Name="Home" VerticalAlignment="Top" HorizontalAlignment="Stretch" CornerRadius="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
 
