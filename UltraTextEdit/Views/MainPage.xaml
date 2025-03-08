@@ -460,7 +460,7 @@
                                                     </DataTemplate>
                                                 </ComboBox.ItemTemplate>
                                             </ComboBox>
-                                            <ComboBox x:Name="FontSizeBox" Width="147" HorizontalContentAlignment="Left" VerticalAlignment="Center" CornerRadius="4,4,4,4" ItemsSource="{x:Bind fontsizes}" SelectionChanged="FontSizeBox_SelectionChanged"/>
+                                            <ComboBox x:Name="FontSizeBox" Width="147" IsEditable="True" CornerRadius="4,4,4,4" ItemsSource="{x:Bind fontsizes}" SelectionChanged="FontSizeBox_SelectionChanged"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0" Spacing="3">
                                             <ToggleButton  x:Name="BoldButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="&#xE19B;" Width="30" Height="30" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Padding="2,3,2,2" x:Uid="BoldButton" CornerRadius="4,4,4,4" Background="{x:Null}" BorderBrush="{x:Null}" Click="BoldButton_Click"/>

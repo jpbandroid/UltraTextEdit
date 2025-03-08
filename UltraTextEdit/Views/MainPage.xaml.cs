@@ -20,6 +20,7 @@ namespace UltraTextEdit.Views
             HelpButton.IsChecked = false;
             Home.Visibility = Visibility.Visible;
             Help.Visibility = Visibility.Collapsed;
+            FontSizeBox.SelectedItem = "11";
         }
 
         public List<string> fonts
