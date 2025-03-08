@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using UltraTextEdit.Views;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -15,6 +16,7 @@ namespace UltraTextEdit
         {
             this.InitializeComponent();
             PageFrame.Navigate(typeof(MainPage));
+            this.SystemBackdrop = new MicaBackdrop();
         }
     }
 }
