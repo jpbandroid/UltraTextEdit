@@ -505,7 +505,18 @@
                                     </Grid>
                                 </controls:RibbonCollapsibleGroup>
                             </controls:Ribbon>
-                            <controls:Ribbon x:Name="Help" VerticalAlignment="Top" HorizontalAlignment="Stretch" CornerRadius="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Visibility="Collapsed"></controls:Ribbon>
+                            <controls:Ribbon x:Name="Help" VerticalAlignment="Top" HorizontalAlignment="Stretch" CornerRadius="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Visibility="Collapsed">
+                                <controls:RibbonGroup>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,27,0,0" Spacing="10">
+                                        <Button x:Name="AboutAppButton"  FontFamily="{StaticResource SymbolThemeFontFamily}" Width="40" Height="53" FontSize="22" x:Uid="AboutAppTooltip" Padding="0,0,0,0" Margin="0,1,0,0" Background="Transparent" BorderBrush="#00000000" CornerRadius="4,4,4,4" Click="AboutApp">
+                                            <Grid Width="30" Height="45" Margin="4,1,4,-1">
+                                                <TextBlock TextWrapping="Wrap" Text="&#xE897;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
+                                                <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,20,0,0" Width="30"><Run x:Uid="AboutAppText"/></TextBlock>
+                                            </Grid>
+                                        </Button>
+                                    </StackPanel>
+                                </controls:RibbonGroup>
+                            </controls:Ribbon>
                         </Grid>
                     </Border>
                 </RelativePanel>

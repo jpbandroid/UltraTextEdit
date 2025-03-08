@@ -47,6 +47,11 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\utevericon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

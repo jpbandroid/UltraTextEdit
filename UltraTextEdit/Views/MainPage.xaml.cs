@@ -1,6 +1,7 @@
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -73,6 +74,17 @@ namespace UltraTextEdit.Views
                     args.Handled = true;
                     break;
             }
+        }
+
+        private async void AboutApp(object sender, RoutedEventArgs e)
+        {
+            AboutUTE aboutUTE = new AboutUTE();
+            ContentDialog aboutdialog = new ContentDialog();
+            aboutdialog.DefaultButton = ContentDialogButton.Primary;
+            aboutdialog.PrimaryButtonText = "OK";
+            aboutdialog.Content = aboutUTE;
+            aboutdialog.XamlRoot = this.XamlRoot;
+            await aboutdialog.ShowAsync();
         }
     }
 }
