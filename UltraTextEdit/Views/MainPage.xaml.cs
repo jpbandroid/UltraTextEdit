@@ -2,6 +2,9 @@ using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Collections.Generic;
+using Microsoft.Graphics.Canvas.Text;
+using System.Linq;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -18,6 +21,16 @@ namespace UltraTextEdit.Views
             Home.Visibility = Visibility.Visible;
             Help.Visibility = Visibility.Collapsed;
         }
+
+        public List<string> fonts
+        {
+            get
+            {
+                return CanvasTextFormat.GetSystemFontFamilies().OrderBy(f => f).ToList();
+            }
+        }
+
+        public List<string> fontsizes { get; } = ["8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "36", "48", "72"];
 
         private void BoldButton_Click(object sender, RoutedEventArgs e)
         {
@@ -126,6 +139,22 @@ namespace UltraTextEdit.Views
             aboutdialog.Content = aboutUTE;
             aboutdialog.XamlRoot = this.XamlRoot;
             await aboutdialog.ShowAsync();
+        }
+
+        private void FontBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (editor.Document.Selection != null)
+            {
+                editor.Document.Selection.CharacterFormat.Name = FontBox.SelectedValue.ToString();
+            }
+        }
+        private void FontSizeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (editor != null && editor.Document.Selection != null)
+            {
+                ITextSelection selectedText = editor.Document.Selection;
+                selectedText.CharacterFormat.Size = float.Parse(FontSizeBox.SelectedValue.ToString());
+            }
         }
     }
 }

@@ -452,6 +452,16 @@
                                         </FontIconSource>
                                     </controls:RibbonCollapsibleGroup.IconSource>
                                     <Grid>
+                                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,7,0,0">
+                                            <ComboBox x:Name="FontBox" Width="255" SelectionChanged="FontBox_SelectionChanged" x:Uid="FontBox" ItemsSource="{x:Bind fonts}" FontSize="14" HorizontalContentAlignment="Left">
+                                                <ComboBox.ItemTemplate>
+                                                    <DataTemplate x:DataType="x:String">
+                                                        <TextBlock FontFamily="{x:Bind}" Text="{x:Bind}" />
+                                                    </DataTemplate>
+                                                </ComboBox.ItemTemplate>
+                                            </ComboBox>
+                                            <ComboBox x:Name="FontSizeBox" Width="147" HorizontalContentAlignment="Left" VerticalAlignment="Center" CornerRadius="4,4,4,4" ItemsSource="{x:Bind fontsizes}" SelectionChanged="FontSizeBox_SelectionChanged"/>
+                                        </StackPanel>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0" Spacing="3">
                                             <ToggleButton  x:Name="BoldButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="&#xE19B;" Width="30" Height="30" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Padding="2,3,2,2" x:Uid="BoldButton" CornerRadius="4,4,4,4" Background="{x:Null}" BorderBrush="{x:Null}" Click="BoldButton_Click"/>
                                             <ToggleButton x:Name="ItalicButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="&#xE199;" Width="30" Height="30" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" x:Uid="ItalicButton" CornerRadius="4,4,4,4" Padding="5,5,5,5"  Background="{x:Null}" BorderBrush="{x:Null}" Click="ItalicButton_Click"/>
