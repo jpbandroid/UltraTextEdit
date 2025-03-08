@@ -38,7 +38,22 @@ namespace UltraTextEdit.Views
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-
+            //Configure underline
+            var flyoutItem = (MenuFlyoutItem)sender;
+            ITextSelection selectedText = editor.Document.Selection;
+            if (selectedText != null)
+            {
+                UnderlineType characterFormat = selectedText.CharacterFormat.Underline;
+                if (flyoutItem.Text == "None") characterFormat = UnderlineType.None;
+                if (flyoutItem.Text == "Single") characterFormat = UnderlineType.Single;
+                if (flyoutItem.Text == "Dash") characterFormat = UnderlineType.Dash;
+                if (flyoutItem.Text == "Dotted") characterFormat = UnderlineType.Dotted;
+                if (flyoutItem.Text == "Double") characterFormat = UnderlineType.Double;
+                if (flyoutItem.Text == "Thick") characterFormat = UnderlineType.Thick;
+                if (flyoutItem.Text == "Wave") characterFormat = UnderlineType.Wave;
+                selectedText.CharacterFormat.Underline = characterFormat;
+                editor.ContextFlyout.Hide();
+            }
         }
         #endregion
 
