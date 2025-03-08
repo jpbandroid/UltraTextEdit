@@ -71,5 +71,39 @@ namespace UltraTextEdit.Views
 
         }
         #endregion
+
+        private void OnKeyboardAcceleratorInvoked(Microsoft.UI.Xaml.Input.KeyboardAccelerator sender, Microsoft.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs args)
+        {
+            ITextSelection selectedText = editor.Document.Selection;
+            switch (sender.Key)
+            {
+                case Windows.System.VirtualKey.B:
+                    if (selectedText != null)
+                    {
+                        ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                        charFormatting.Bold = FormatEffect.Toggle;
+                        selectedText.CharacterFormat = charFormatting;
+                    }
+                    BoldButton.IsChecked = editor.Document.Selection.CharacterFormat.Bold == FormatEffect.On;
+                    args.Handled = true;
+                    break;
+                case Windows.System.VirtualKey.I:
+                    if (selectedText != null)
+                    {
+                        ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                        charFormatting.Italic = FormatEffect.Toggle;
+                        selectedText.CharacterFormat = charFormatting;
+                    }
+                    ItalicButton.IsChecked = editor.Document.Selection.CharacterFormat.Italic == FormatEffect.On;
+                    args.Handled = true;
+                    break;
+                case Windows.System.VirtualKey.U:
+                    args.Handled = true;
+                    break;
+                case Windows.System.VirtualKey.S:
+                    //SaveFile(false);
+                    break;
+            }
+        }
     }
 }

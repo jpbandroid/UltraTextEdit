@@ -511,6 +511,24 @@
             </Grid>
         </RelativePanel>
         <RichEditBox x:Name="editor" RelativePanel.Below="Ribbon" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <RichEditBox.KeyboardAccelerators>
+                <KeyboardAccelerator
+                    Key="B"
+                    Invoked="OnKeyboardAcceleratorInvoked"
+                    Modifiers="Control" />
+                <KeyboardAccelerator
+                    Key="I"
+                    Invoked="OnKeyboardAcceleratorInvoked"
+                    Modifiers="Control" />
+                <KeyboardAccelerator
+                    Key="U"
+                    Invoked="OnKeyboardAcceleratorInvoked"
+                    Modifiers="Control" />
+                <KeyboardAccelerator
+                    Key="S"
+                    Invoked="OnKeyboardAcceleratorInvoked"
+                    Modifiers="Control" />
+            </RichEditBox.KeyboardAccelerators>
         </RichEditBox>
     </RelativePanel>
 </Page>
