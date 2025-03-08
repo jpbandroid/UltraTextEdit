@@ -34,10 +34,6 @@
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal">
-
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="Pipe" Storyboard.TargetProperty="Width" EnableDependentAnimation="True" Duration="0:0:0.12" To="0"/>
-                                        </Storyboard>
                                     </VisualState>
 
                                     <VisualState x:Name="PointerOver">
@@ -52,9 +48,13 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundPointerOver}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetName="Pipe" Storyboard.TargetProperty="Width" EnableDependentAnimation="True" Duration="0:0:0.12" To="12"/>
+                                            <DoubleAnimation Storyboard.TargetName="Pipe" Storyboard.TargetProperty="Width" EnableDependentAnimation="True" Duration="0:0:0" To="12"/>
                                         </Storyboard>
+                                        <VisualState.Setters>
+                                            <Setter Target="Pipe.Background" Value="#FF7F7F7F"/>
+                                        </VisualState.Setters>
                                     </VisualState>
+
 
                                     <VisualState x:Name="Pressed">
 
