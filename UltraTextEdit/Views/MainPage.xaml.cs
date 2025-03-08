@@ -12,17 +12,27 @@ namespace UltraTextEdit.Views
         public MainPage()
         {
             this.InitializeComponent();
+            EditButton.IsChecked = true;
+            HelpButton.IsChecked = false;
+            Home.Visibility = Visibility.Visible;
+            Help.Visibility = Visibility.Collapsed;
         }
 
         #region Stub methods
         private void OpenEditTab(object sender, RoutedEventArgs e)
         {
-
+            EditButton.IsChecked = true;
+            HelpButton.IsChecked = false;
+            Home.Visibility = Visibility.Visible;
+            Help.Visibility = Visibility.Collapsed;
         }
 
         private void OpenHelpTab(object sender, RoutedEventArgs e)
         {
-
+            EditButton.IsChecked = false;
+            HelpButton.IsChecked = true;
+            Home.Visibility = Visibility.Collapsed;
+            Help.Visibility = Visibility.Visible;
         }
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)

@@ -505,6 +505,7 @@
                                     </Grid>
                                 </controls:RibbonCollapsibleGroup>
                             </controls:Ribbon>
+                            <controls:Ribbon x:Name="Help" VerticalAlignment="Top" HorizontalAlignment="Stretch" CornerRadius="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Visibility="Collapsed"></controls:Ribbon>
                         </Grid>
                     </Border>
                 </RelativePanel>
