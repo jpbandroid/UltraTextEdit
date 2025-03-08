@@ -83,6 +83,12 @@ namespace UltraTextEdit.Views
                     args.Handled = true;
                     break;
                 case Windows.System.VirtualKey.U:
+                    if (selectedText != null)
+                    {
+                        UnderlineType characterFormat = selectedText.CharacterFormat.Underline;
+                        characterFormat = UnderlineType.Single;
+                        selectedText.CharacterFormat.Underline = characterFormat;
+                    }
                     args.Handled = true;
                     break;
                 case Windows.System.VirtualKey.S:
