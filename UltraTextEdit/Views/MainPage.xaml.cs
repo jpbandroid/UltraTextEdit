@@ -31,29 +31,6 @@ namespace UltraTextEdit.Views
         public MainPage()
         {
             this.InitializeComponent();
-            this.KeyDown += OnKeyComboPressed;
-            editor.KeyDown += OnKeyComboPressed;
-        }
-
-        private void OnKeyComboPressed(object sender, KeyRoutedEventArgs e)
-        {
-            var state = InputKeyboardSource.GetKeyStateForCurrentThread(Windows.System.VirtualKey.Control);
-            var isCtrlPressed = state.HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down);
-            if (e.Key == VirtualKey.B && isCtrlPressed)
-            {
-                BoldButton.IsChecked = !BoldButton.IsChecked;
-            }
-        }
-
-        #region Stub methods
-        private void OpenEditTab(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OpenHelpTab(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void BoldButton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +45,23 @@ namespace UltraTextEdit.Views
         }
 
         private void ItalicButton_Click(object sender, RoutedEventArgs e)
+        {
+            ITextSelection selectedText = editor.Document.Selection;
+            if (selectedText != null)
+            {
+                ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                charFormatting.Italic = FormatEffect.Toggle;
+                selectedText.CharacterFormat = charFormatting;
+            }
+        }
+
+        #region Stub methods
+        private void OpenEditTab(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenHelpTab(object sender, RoutedEventArgs e)
         {
 
         }
