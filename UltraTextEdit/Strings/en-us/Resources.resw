@@ -235,10 +235,6 @@ It uses the latest WinUI version to give you the most optimal, modern experience
     <value>Exit</value>
     <comment>Text of the "Exit" option, last option in the "File" dropdown</comment>
   </data>
-  <data name="File.Title" xml:space="preserve">
-    <value>File</value>
-    <comment>Title of the "File" dropdown</comment>
-  </data>
   <data name="FindBox.PlaceholderText" xml:space="preserve">
     <value>Find</value>
     <comment>Placeholder text for the Find text box</comment>
@@ -578,5 +574,9 @@ title</value>
   </data>
   <data name="Table.Text" xml:space="preserve">
     <value>Table</value>
+  </data>
+  <data name="FileButton.Content" xml:space="preserve">
+    <value>File</value>
+    <comment>Text for the "File" button in the app's main UI</comment>
   </data>
 </root>

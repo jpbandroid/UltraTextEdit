@@ -5,6 +5,11 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Graphics.Canvas.Text;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
+using Windows.Storage.Pickers;
+using Windows.Storage.Provider;
+using Windows.Storage.Streams;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -13,6 +18,8 @@ namespace UltraTextEdit.Views
 {
     public sealed partial class MainPage : Page
     {
+        private string originalDocText;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -155,6 +162,84 @@ namespace UltraTextEdit.Views
             {
                 ITextSelection selectedText = editor.Document.Selection;
                 selectedText.CharacterFormat.Size = float.Parse(FontSizeBox.SelectedValue.ToString());
+            }
+        }
+
+        private void NewDoc_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Activate();
+        }
+
+        private async void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker()
+            {
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+            };
+            IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hwnd);
+
+            openPicker.FileTypeFilter.Add(".rtf");
+            openPicker.FileTypeFilter.Add(".txt");
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+
+            if (file != null)
+            {
+                using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    IBuffer buffer = await FileIO.ReadBufferAsync(file);
+                    var reader = DataReader.FromBuffer(buffer);
+                    reader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
+                    string text = reader.ReadString(buffer.Length);
+                    // Load the file into the Document property of the RichEditBox.
+                    editor.Document.LoadFromStream(TextSetOptions.FormatRtf, randAccStream);
+                    editor.Document.GetText(TextGetOptions.UseObjectText, out originalDocText);
+                }
+            }
+        }
+
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            FileSavePicker savePicker = new FileSavePicker();
+            savePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+            IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+            WinRT.Interop.InitializeWithWindow.Initialize(savePicker, hwnd);
+
+            // Dropdown of file types the user can save the file as
+            savePicker.FileTypeChoices.Add("Rich Text", new List<string>() { ".rtf" });
+            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+
+            // Default file name if the user does not type one in or select a file to replace
+            savePicker.SuggestedFileName = "New Document";
+
+            StorageFile file = await savePicker.PickSaveFileAsync();
+            if (file != null)
+            {
+                // Prevent updates to the remote version of the file until we
+                // finish making changes and call CompleteUpdatesAsync.
+                //CachedFileManager.DeferUpdates(file);
+                // write to file
+                using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+
+                    if (file.Name.EndsWith(".txt"))
+                    {
+                        editor.Document.SaveToStream(Microsoft.UI.Text.TextGetOptions.None, randAccStream);
+                    }
+                    else
+                    {
+                        editor.Document.SaveToStream(Microsoft.UI.Text.TextGetOptions.FormatRtf, randAccStream);
+                    }
+
+                // Let Windows know that we're finished changing the file so the
+                // other app can update the remote version of the file.
+                //FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+                //if (status != FileUpdateStatus.Complete)
+                //{
+                //    Windows.UI.Popups.MessageDialog errorBox = new Windows.UI.Popups.MessageDialog("File " + file.Name + " couldn't be saved.");
+                //    await errorBox.ShowAsync();
+                //}
             }
         }
     }
