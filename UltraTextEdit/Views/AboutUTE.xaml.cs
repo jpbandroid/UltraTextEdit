@@ -1,4 +1,6 @@
 using Microsoft.UI.Xaml.Controls;
+using System.Reflection;
+using System;
 
 namespace UltraTextEdit.Views
 {
@@ -10,6 +12,14 @@ namespace UltraTextEdit.Views
         public AboutUTE()
         {
             this.InitializeComponent();
+            Assembly assembly = typeof(App).Assembly;
+            CompileDateText.Text = "Built " + GetBuildDate(assembly) + " UTC";
+        }
+
+        private static DateTime GetBuildDate(Assembly assembly)
+        {
+            var attribute = assembly.GetCustomAttribute<BuildDateAttribute>();
+            return attribute != null ? attribute.DateTime : default(DateTime);
         }
     }
 }
