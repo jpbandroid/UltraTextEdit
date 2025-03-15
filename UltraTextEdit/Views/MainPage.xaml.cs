@@ -10,6 +10,8 @@ using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
 using Windows.Storage.Streams;
 using Windows.Storage;
+using System.IO;
+using System.Text;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -187,15 +189,35 @@ namespace UltraTextEdit.Views
 
             if (file != null)
             {
-                using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                if (file.FileType == ".rtf")
                 {
-                    IBuffer buffer = await FileIO.ReadBufferAsync(file);
-                    var reader = DataReader.FromBuffer(buffer);
-                    reader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
-                    string text = reader.ReadString(buffer.Length);
-                    // Load the file into the Document property of the RichEditBox.
-                    editor.Document.LoadFromStream(TextSetOptions.FormatRtf, randAccStream);
-                    editor.Document.GetText(TextGetOptions.UseObjectText, out originalDocText);
+                    using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        IBuffer buffer = await FileIO.ReadBufferAsync(file);
+                        var reader = DataReader.FromBuffer(buffer);
+                        reader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
+                        string text = reader.ReadString(buffer.Length);
+                        // Load the file into the Document property of the RichEditBox.
+                        editor.Document.LoadFromStream(TextSetOptions.FormatRtf, randAccStream);
+                        editor.Document.GetText(TextGetOptions.UseObjectText, out originalDocText);
+                    }
+                }
+                else if (file.FileType == ".txt")
+                {
+                    using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        using (Stream stream = randAccStream.AsStreamForRead())
+                        {
+                            // Use StreamReader with the appropriate encoding (e.g., UTF-8)
+                            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                            {
+                                string text = await reader.ReadToEndAsync();
+
+                                // Load the file into the Document property of the RichEditBox.
+                                editor.Document.SetText(TextSetOptions.None, text);
+                            }
+                        }
+                    }
                 }
             }
         }
