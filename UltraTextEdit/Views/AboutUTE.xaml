@@ -19,7 +19,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <TextBlock FontSize="16" FontWeight="SemiBold" IsTextSelectionEnabled="True">version 5.0</TextBlock>
-                    <TextBlock FontSize="16" IsTextSelectionEnabled="True">Development Release 2</TextBlock>
+                    <TextBlock FontSize="16" IsTextSelectionEnabled="True">Beta 1</TextBlock>
                     <TextBlock FontSize="16" IsTextSelectionEnabled="True" x:Name="CompileDateText">Compilation date: March 9, 2025</TextBlock>
                     <TextBlock FontSize="16" IsTextSelectionEnabled="True">©️ 2021-2025 jpb, Ivirius, and other contributors</TextBlock>
                     <TextBlock IsTextSelectionEnabled="True">Licensed under the <Bold>MIT License</Bold></TextBlock>
